@@ -212,6 +212,39 @@ where `table.tsv` can be any chunk of Supplementary Table 2 having an available 
 ./dnaPT_summary.sh 5 recentTEs_5perc.tsv overallTEs.tsv
 ```
 
+## Traits correlation under phylogenetic non-independence
+Phylogenetic generalized Least Squares was performed with ape and nlme packages. df being Supplementary Table 2 and fulltree the whole phylogeny:
+```
+library(nlme)
+library(ape)
+rownames(df)<- df$Species
+sp2rm <- fulltree$tip.label[! fulltree$tip.label %in% rownames(df)]
+prunedtree <- drop.tip(fulltree, sp2rm)
+df <-  df[prunedtree$tip.label, ]
+
+pgls_gs_overallte <- gls(log(Unified_Cvalues_methods)~log(Overall_repeat_bp), correlation = corBrownian(phy = prunedtree, form =~Species), data = df, method = "ML", na.action=na.omit)
+
+pgls_mass_dnds <- gls(Mass_g_log~dNdS, correlation = corBrownian(phy = prunedtree, form =~Species), data = df, method = "ML", na.action=na.omit)
+
+pgls_longevity_dnds <- gls(MaxLongevity_y_log~dNdS, correlation = corBrownian(phy = prunedtree, form =~Species), data = df, method = "ML", na.action=na.omit)
+
+pgls_gs_dnds <- gls(log(Unified_Cvalues_methods)~dNdS, correlation = corBrownian(phy = prunedtree, form =~Species), data = df, method = "ML", na.action=na.omit)
+
+pgls_overallte_dnds <- gls(log(Overall_repeat_bp)~dNdS, correlation = corBrownian(phy = prunedtree, form =~Species), data = df, method = "ML", na.action=na.omit)
+
+pgls_recentte_dnds <- gls(log(Overall_recent_bp)~dNdS, correlation = corBrownian(phy = prunedtree, form =~Species), data = df, method = "ML", na.action=na.omit)
+
+pgls_gs_mass <- gls(log(Unified_Cvalues_methods)~Mass_g_log, correlation = corBrownian(phy = prunedtree, form =~Species), data = df, method = "ML", na.action=na.omit)
+
+pgls_gs_longevity <- gls(log(Unified_Cvalues_methods)~MaxLongevity_y_log, correlation = corBrownian(phy = prunedtree, form =~Species), data = df, method = "ML", na.action=na.omit)
+
+```
+Bayesian inference of traits and substitution rates covariation was conducted with Coevol 1.6 (Lartillot & Poujol, 2011) on each clade separately.
+**ADD WORKFLOW TO DEFINE GC-POOR AND GC-RICH GENESETS. Add script(s)?**
+
+**ADD COMMAND LINE**
+
+
 # References
 Baril, T., Imrie, R. M., & Hayward, A. (2022). Earl Grey: a fully automated user-friendly transposable element annotation and analysis pipeline [Preprint]. In Review. doi: 10.21203/rs.3.rs-1812599/v1  
 
@@ -224,6 +257,8 @@ Guéguen, L., & Duret, L. (2018). Unbiased Estimate of Synonymous and Nonsynonym
 Guéguen, L., Gaillard, S., Boussau, B., Gouy, M., Groussin, M., Rochette, N. C., Bigot, T., Fournier, D., Pouyet, F., Cahais, V., Bernard, A., Scornavacca, C., Nabholz, B., Haudry, A., Dachary, L., Galtier, N., Belkhir, K., & Dutheil, J. Y. (2013). Bio++: Efficient Extensible Libraries and Tools for Computational Molecular Evolution. Molecular Biology and Evolution, 30(8), 1745–1750. doi: 10.1093/molbev/mst097  
 
 Gurevich, A., Saveliev, V., Vyahhi, N., & Tesler, G. (2013). QUAST: quality assessment tool for genome assemblies. Bioinformatics, 29(8), 1072–1075. doi: 10.1093/bioinformatics/btt086  
+
+Lartillot, N., & Poujol, R. (2011). A Phylogenetic Model for Investigating Correlated Evolution of Substitution Rates and Continuous Phenotypic Characters. Molecular Biology and Evolution, 28(1), 729–744. doi: 10.1093/molbev/msq244  
 
 Manni, M., Berkeley, M. R., Seppey, M., Simão, F. A., & Zdobnov, E. M. (2021). BUSCO Update: Novel and Streamlined Workflows along with Broader and Deeper Phylogenetic Coverage for Scoring of Eukaryotic, Prokaryotic, and Viral Genomes. Molecular Biology and Evolution, 38(10), 4647–4654. doi: 10.1093/molbev/msab199  
 
