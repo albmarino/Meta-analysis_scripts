@@ -207,6 +207,10 @@ The pipeline available at https://github.com/sigau/pipeline_dnapipe is based on 
 python3 sradownload_dnapipe.py table.tsv
 ```
 where `table.tsv` can be any chunk of Supplementary Table 2 having an available reads experiment ID.
+`dnaPT_summary_overall_recent.sh` was used to extract the overall and recent TE content. It leverages `dnapt_recentTEs.R` which adapts part of `dnaPT_landscapes.sh` from https://github.com/clemgoub/dnaPT_utils. With all the output folders in the same working directory, the overall and recent TE content below 5% divergence was obtained with:
+```
+./dnaPT_summary.sh 5 recentTEs_5perc.tsv overallTEs.tsv
+```
 
 # References
 Baril, T., Imrie, R. M., & Hayward, A. (2022). Earl Grey: a fully automated user-friendly transposable element annotation and analysis pipeline [Preprint]. In Review. doi: 10.21203/rs.3.rs-1812599/v1  
