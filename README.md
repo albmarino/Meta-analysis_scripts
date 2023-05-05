@@ -130,8 +130,11 @@ Rscript excludeSpeciesTree_edit.R mammalia_outgroup.fst mammalia_out_100.fst.tre
 iqtree -s mammalia_outgroup.fst -m LG+G -g new_mammalia_out_100.fst.treefile -pre mammalia_outgroup # use previously calculated mammalian topology to constrain the rooted tree
 Rscript excludeSpeciesTree_edit.R aves_outgroup.fst aves_out_107.fst.treefile
 iqtree -s aves_outgroup.fst -m LG+G -g new_aves_out_107.fst.treefile -pre aves_outgroup
+```
+
 The mammalian and avian phylogenies were joined into a tetrapod phylogeny with the tree editor Baobab (Dutheil & Galtier, 2002).
 50 top-shared genes in Supplementary Table 5 were chosen to recompute the branch lengths. The 50 mammalian and avian nucleotide alignments were joined together into a tetrapod alignment:
+```
 for gene in $(cat 50sharedbuscogenes); do
 java -jar ~/bin/macse_v2.06.jar -prog alignTwoProfiles -p1 mammalia_"$gene"_final_mask_align_NT.aln -p2 aves_"$gene"_final_mask_align_NT.aln -out_NT tetrapoda_"$gene"_NT.fasta -out_AA tetrapoda_"$gene"_AA.fasta
 sed -i 's/!/-/g' tetrapoda_"$gene"_AA.fasta
@@ -192,16 +195,25 @@ rename "s/^/${gene}_/" counts_*
 done
 ```
 
-## TE annotation with Earl Grey
+## TE annotation of genome assemblies
 Earl Grey 1.3 (Baril et al., 2022) was used to annotate 29 dipteran assemblies with the command below:
 ```
 earlGrey -g GCA_001542645.1.fa -s Anopheles_gambiae -r metazoa -o ./Anopheles_gambiae_earlgrey -t 8
 ```
 
+## TE annotation from unassembled reads
+The pipeline available at https://github.com/sigau/pipeline_dnapipe is based on two rounds of dnaPipeTE (Goubert et al., 2015) and was used to quantify TEs from short reads. The full process from reads download to second clean output was automatized with
+```
+python3 sradownload_dnapipe.py table.tsv
+```
+where `table.tsv` can be any chunk of Supplementary Table 2 having an available reads experiment ID.
+
 # References
 Baril, T., Imrie, R. M., & Hayward, A. (2022). Earl Grey: a fully automated user-friendly transposable element annotation and analysis pipeline [Preprint]. In Review. doi: 10.21203/rs.3.rs-1812599/v1  
 
 Dutheil, J., Gaillard, S., Bazin, E., Glémin, S., Ranwez, V., Galtier, N., & Belkhir, K. (2006). Bio++: a set of C++ libraries for sequence analysis, phylogenetics, molecular evolution and population genetics. BMC Bioinformatics, 7(1), 188. doi: 10.1186/1471-2105-7-188  
+
+Goubert, C., Modolo, L., Vieira, C., ValienteMoro, C., Mavingui, P., & Boulesteix, M. (2015). De Novo Assembly and Annotation of the Asian Tiger Mosquito (Aedes albopictus) Repeatome with dnaPipeTE from Raw Genomic Reads and Comparative Analysis with the Yellow Fever Mosquito (Aedes aegypti). Genome Biology and Evolution, 7(4), 1192–1205. doi: 10.1093/gbe/evv050  
 
 Guéguen, L., & Duret, L. (2018). Unbiased Estimate of Synonymous and Nonsynonymous Substitution Rates with Nonstationary Base Composition. Molecular Biology and Evolution, 35(3), 734–742. doi: 10.1093/molbev/msx308  
 
