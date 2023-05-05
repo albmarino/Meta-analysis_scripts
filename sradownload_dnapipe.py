@@ -48,7 +48,7 @@ for sra_id in dict_sra.keys():
 	#subprocess.run(cmd_fastq, shell=True)
 	#print(f"done for {sra_id}")
 
-	# WAY faster fastq convertion - could include --print-read-nr but the option is not recognized and fasterq-dump crushes
+	# faster fastq convertion - with --print-read-nr fasterq-dump crushes
 	cmd_fasterq=f"cd {sr_folder2}/ && fasterq-dump --outdir {sr_folder2} --mem 1G --split-3 --threads 8 --skip-technical {sr_folder2}/{sra_id}/{sra_id}.sra"
 	subprocess.run(cmd_fasterq, shell=True)
 	print(f"piggingz {sra_id}")
