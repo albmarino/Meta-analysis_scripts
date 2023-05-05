@@ -1,1 +1,2 @@
-# meta-analysis_scripts
+# Meta-analysis_scripts
+Scripts for code reproducibility
