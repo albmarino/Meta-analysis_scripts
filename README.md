@@ -142,7 +142,7 @@ done
 ```
 
 The same workflow was repeated to join tetrapods to Actinopteri, Mollusca to Insecta, and finally vertebrates to protostomes.
-With the full tree topology and the full gene alignments, 50 top-shared genes were chosen to recompute branch lengths:
+With the full tree topology and the full gene alignments, 50 top-shared genes were chosen to recompute branch lengths and obtain `FULLTREE_brlengths_rooted.treefile`:
 ```
 grep '>' fulltree*AA.fasta | cut -d: -f2 | sort -u | sed 's/>//' > list_esp.txt
 ls fulltree*AA.fasta > list_file.txt
@@ -213,10 +213,11 @@ where `table.tsv` can be any chunk of Supplementary Table 2 having an available 
 ```
 
 ## Traits correlation under phylogenetic non-independence
-Phylogenetic generalized Least Squares was performed with ape and nlme packages. df being Supplementary Table 2 and fulltree the whole phylogeny:
+Phylogenetic generalized Least Squares was performed with ape and nlme packages, using Supplementary Table 2 (`df`) and `FULLTREE_brlengths_rooted.treefile`:
 ```
 library(nlme)
 library(ape)
+fulltree <- read.tree("FULLTREE_brlengths_rooted.treefile")
 rownames(df)<- df$Species
 sp2rm <- fulltree$tip.label[! fulltree$tip.label %in% rownames(df)]
 prunedtree <- drop.tip(fulltree, sp2rm)
