@@ -240,11 +240,21 @@ pgls_gs_mass <- gls(log(Unified_Cvalues_methods)~Mass_g_log, correlation = corBr
 pgls_gs_longevity <- gls(log(Unified_Cvalues_methods)~MaxLongevity_y_log, correlation = corBrownian(phy = prunedtree, form =~Species), data = df, method = "ML", na.action=na.omit)
 
 ```
-Bayesian inference of traits and substitution rates covariation was conducted with Coevol 1.6 (Lartillot & Poujol, 2011) on each clade separately.
+
+Bayesian inference of traits and substitution rates covariation was conducted with Coevol 1.6 (Lartillot & Poujol, 2011) on each clade separately, using a set of 50 clade-specific genes, both with a low and high GC content at the third codon position (GC3 content).  
 **ADD WORKFLOW TO DEFINE GC-POOR AND GC-RICH GENESETS. Add script(s)?**
 
-**ADD COMMAND LINE**
-
+The average GC3 content for each gene and the number of markers available for each species were calculated, and species with less than 50% of single-copy markers were excluded as follows:
+```
+./genespersp.sh # outputs genespersp.tsv
+./gcstat.sh # outputs gc3_report_allsp.tsv
+Rscript gc3plots.R 50 50 95 gc3_report_allsp.tsv genespersp.tsv 50 # outputs sp2rm_50percgenespersp
+```
+only genes represented in at least 95% of the species were retained and the 50 GC3-poorest and GC3-richest genes were extracted:
+```
+./gcstat_filtgenespersp.sh sp2rm_50percgenespersp # outputs gc3_report_50percgenespersp.tsv
+Rscript ~/bin/gc3plots.R 50 50 95 gc3_report_50percgenespersp.tsv genespersp.tsv # outputs lists of GC3-poor and GC3-rich genes for every clade 
+```
 
 # References
 Baril, T., Imrie, R. M., & Hayward, A. (2022). Earl Grey: a fully automated user-friendly transposable element annotation and analysis pipeline [Preprint]. In Review. doi: 10.21203/rs.3.rs-1812599/v1  
