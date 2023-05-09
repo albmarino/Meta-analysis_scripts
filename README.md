@@ -204,19 +204,20 @@ earlGrey -g GCA_001542645.1.fa -s Anopheles_gambiae -r metazoa -o ./Anopheles_ga
 ## TE annotation from unassembled reads
 The pipeline available at https://github.com/sigau/pipeline_dnapipe is based on two rounds of dnaPipeTE (Goubert et al., 2015) and was used to quantify TEs from short reads. The full process from reads download to second clean output can be automatized with
 ```
-python3 sradownload_dnapipe.py table.tsv
+python3 sradownload_dnapipe.py coevol_table.tsv
 ```
-where `table.tsv` can be any chunk of Supplementary Table 2 having an available reads experiment ID.
+where `coevol_table.tsv` is Supplementary Table 2 (will work only on species with available reads experiment ID).
 `dnaPT_summary_overall_recent.sh` was used to extract the overall and recent TE content. It leverages `dnapt_recentTEs.R` which adapts part of `dnaPT_landscapes.sh` from https://github.com/clemgoub/dnaPT_utils. The overall and recent TE content below 5% divergence were obtained with:
 ```
 ./dnaPT_summary_overall_recent.sh 5 recentTEs_5perc.tsv overallTEs.tsv
 ```
 
 ## Traits correlation under phylogenetic non-independence
-Phylogenetic generalized Least Squares was performed with ape and nlme packages, using Supplementary Table 2 (`df`) and `FULLTREE_brlengths_rooted.treefile`:
+Phylogenetic generalized Least Squares was performed with ape and nlme packages:
 ```
 library(nlme)
 library(ape)
+df <- read.table("table_coevol.tsv", header=T, sep="\t")
 fulltree <- read.tree("FULLTREE_brlengths_rooted.treefile")
 rownames(df)<- df$Species
 sp2rm <- fulltree$tip.label[! fulltree$tip.label %in% rownames(df)]
@@ -261,11 +262,12 @@ Rscript ~/bin/gc3plots.R 50 50 90 gc3_report_50percgenespersp.tsv genespersp_50p
 Coevol was run for each clade with the GC3-poor and GC3-rich datasets as follows:
 ```
 Rscript make_coevol_table.R actinopteri # outputs the traits matrix
-coevol ...
-
+coevol -d concatenate_gcpoorset_actinopteri.fasta -t actinopteri_brlen_rooted.treefile -fixtimes -c Actinopteri_coevol.txt -dsom actinopteri_gcpoorset_out
 ```
-# load table_coevol.tsv, make_coevol_table.R, rooted clade phylogenies
-# COEVOL COMMAND
+
+# TO DO:
+- edit `make_coevol_table.R` to replace **ALL** 0s with -1
+- coevol command?
 
 # References
 Baril, T., Imrie, R. M., & Hayward, A. (2022). Earl Grey: a fully automated user-friendly transposable element annotation and analysis pipeline [Preprint]. In Review. doi: 10.21203/rs.3.rs-1812599/v1  
