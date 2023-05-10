@@ -64,10 +64,10 @@ for (i in table3$Reads_assembly) {
  }
 colnames(newdf) <- newheader
 table3 <- cbind(table3, newdf)
-m1_readscombined <- lm(Cvalue ~ Assembly_size + Reads_category + Assembly_size:Reads_category, data=table3))
-wt_m1_readscombined <- 1 / lm(abs(m1_readscombined$residuals) ~ m1_readscombined$fitted.values)$fitted.values^2
-wls_m1_readscombined <- lm(Cvalue ~ Assembly_size + Reads_category + Assembly_size:Reads_category, data = table3, weights=wt_m1_readscombined)
-summary(wls_m1_readscombined)
+m1 <- lm(Cvalue ~ Assembly_size + Reads_category + Assembly_size:Reads_category, data=table3))
+wt_m1 <- 1 / lm(abs(m1$residuals) ~ m1$fitted.values)$fitted.values^2
+wls_m1 <- lm(Cvalue ~ Assembly_size + Reads_category + Assembly_size:Reads_category, data = table3, weights=wt_m1)
+summary(wls_m1)
 
 ######################
 Coefficients:
