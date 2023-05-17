@@ -1,0 +1,30 @@
+DATA = aln_filename
+TYPE = curr_maptype
+
+alphabet = Codon(letter=DNA)
+genetic_code = Standard
+
+input.data1=alignment(file = ./$(DATA), format=Fasta, sites_to_use = all, max_gap_allowed=50%, remove_stop_codons = yes,remove_saturated_sites = yes)
+
+
+#Set imput tree file. Original branch lengths will be used for mapping.
+input.tree1=user(file = $(DATA).ml_h.dnd_1)
+
+### File of the modeling
+
+param = $(DATA).ml_h.params.bpp
+
+### normalization with the same model in which omega=1
+
+nullProcessParams = YN98.omega*=1
+
+### Type of event counted
+
+map.type = $(TYPE)
+
+count.max = 3
+
+#output.counts = PerType(prefix=counts_)
+
+# Split counts from model opportunities
+output.counts = PerBranch(prefix=CM_counts_, splitNorm=true)
