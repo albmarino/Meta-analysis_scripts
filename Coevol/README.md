@@ -39,7 +39,7 @@ Rscript gc3plots.R 50 50 95 gc3_report_allsp.tsv genespersp.tsv 50 # outputs sp2
 
 Only genes represented in at least 95% of the species were retained, the 50 GC3-poorest and GC3-richest genes extracted and concatenated for each clade:
 ```
-./genespersp_filtgenespersp.sh # outputs genespersp_50percgenespersp.tsv, a table with number of markers per species on the filtered geneset
+./genespersp_filtgenespersp.sh sp2rm_50percgenespersp # outputs genespersp_50percgenespersp.tsv, a table with number of markers per species on the filtered geneset
 Rscript ~/bin/gc3plots_gcrich.R 50 50 90 gc3_report_50percgenespersp.tsv genespersp_50percgenespersp.tsv # outputs lists of the top 50 GC3-rich genes for every clade
 Rscript ~/bin/gc3plots.R 50 50 90 gc3_report_50percgenespersp.tsv genespersp_50percgenespersp.tsv # outputs lists of the top 50 GC3-poor genes for every clade
 ./concatenate_4coevol.sh gcpoorset_actinopteri_50percgenespersp_95_20_20.tsv sp2rm_50percgenespersp
