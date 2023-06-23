@@ -47,6 +47,6 @@ Rscript ~/bin/gc3plots.R 50 50 90 gc3_report_50percgenespersp.tsv genespersp_50p
 
 Coevol was run for each clade with the GC3-poor and GC3-rich datasets as follows:
 ```
-Rscript make_coevol_table.R actinopteri # outputs the traits matrix
+Rscript make_coevol_table.R Actinopteri # outputs the traits matrix
 coevol -d concatenate_gcpoorset_actinopteri.fasta -t actinopteri_brlen_rooted.treefile -fixtimes -c Actinopteri_coevol.txt -dsom actinopteri_gcpoorset_out
 ```
