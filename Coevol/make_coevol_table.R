@@ -21,7 +21,7 @@ for (c in colnames(clade)[-1]) {
 	}
 }
 		
-		
+clade[clade == 0] <- NA		
 		
 ntaxa<-nrow(clade)
 ntraits<-ncol(clade)-1
