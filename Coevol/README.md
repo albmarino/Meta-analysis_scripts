@@ -1,31 +1,40 @@
 ## Traits correlation under phylogenetic non-independence
-Phylogenetic generalized Least Squares was performed with ape and nlme packages:
+Phylogenetic generalized Least Squares was performed with ape and nlme packages.
+An example for the whole dataset is shown below (the same method was applied to the clade subsets,as well).
+
 ```
-library(nlme)
 library(ape)
-df <- read.table("table_coevol.tsv", header=T, sep="\t")
+library(caper)
+library(nlme)
+
+df <- read.table("table_coevol_final.tsv", header=T, sep="\t")
 fulltree <- read.tree("FULLTREE_brlengths_rooted.treefile")
 rownames(df)<- df$Species
 sp2rm <- fulltree$tip.label[! fulltree$tip.label %in% rownames(df)]
 prunedtree <- drop.tip(fulltree, sp2rm)
 df <-  df[prunedtree$tip.label, ]
+prunedtree$node.label = NULL
 
-pgls_gs_overallte <- gls(log(Unified_Cvalues_methods)~log(Overall_repeat_bp), correlation = corBrownian(phy = prunedtree, form =~Species), data = df, method = "ML", na.action=na.omit)
+df_ic <- comparative.data(prunedtree, df, Species, na.omit = F , vcv=TRUE )
 
-pgls_mass_dnds <- gls(Mass_g_log~dNdS, correlation = corBrownian(phy = prunedtree, form =~Species), data = df, method = "ML", na.action=na.omit)
+ic_logmass_logdnds <- crunch(Mass_g_log~log(dNdS_CM_phylter_noshortbr) , data=df_ic)
+contrast_logmass_logdnds <- caic.table(ic_logmass_logdnds)
 
-pgls_longevity_dnds <- gls(MaxLongevity_y_log~dNdS, correlation = corBrownian(phy = prunedtree, form =~Species), data = df, method = "ML", na.action=na.omit)
+ic_loglong_logdnds <- crunch(MaxLongevity_y_log~log(dNdS_CM_phylter_noshortbr) , data=df_ic)
+contrast_loglong_logdnds <- caic.table(ic_loglong_logdnds)
 
-pgls_gs_dnds <- gls(log(Unified_Cvalues_methods)~dNdS, correlation = corBrownian(phy = prunedtree, form =~Species), data = df, method = "ML", na.action=na.omit)
+ic_loggs_logTE <- crunch(log(Unified_Cvalues_methods)~log(Overall_repeat_bp) , data=df_ic)
+contrast_loggs_logTE <- caic.table(ic_loggs_logTE)
 
-pgls_overallte_dnds <- gls(log(Overall_repeat_bp)~dNdS, correlation = corBrownian(phy = prunedtree, form =~Species), data = df, method = "ML", na.action=na.omit)
+ic_loggs_logdnds <- crunch(log(Unified_Cvalues_methods)~log(dNdS_CM_phylter_noshortbr) , data=df_ic)
+contrast_loggs_logdnds <- caic.table(ic_loggs_logdnds)
 
-pgls_recentte_dnds <- gls(log(Overall_recent_bp)~dNdS, correlation = corBrownian(phy = prunedtree, form =~Species), data = df, method = "ML", na.action=na.omit)
+ic_logTE_logdnds <- crunch(log(Overall_repeat_bp)~log(dNdS_CM_phylter_noshortbr) , data=df_ic)
+summary(ic_logTE_logdnds)
+contrast_logTE_logdnds <- caic.table(ic_logTE_logdnds)
 
-pgls_gs_mass <- gls(log(Unified_Cvalues_methods)~Mass_g_log, correlation = corBrownian(phy = prunedtree, form =~Species), data = df, method = "ML", na.action=na.omit)
-
-pgls_gs_longevity <- gls(log(Unified_Cvalues_methods)~MaxLongevity_y_log, correlation = corBrownian(phy = prunedtree, form =~Species), data = df, method = "ML", na.action=na.omit)
-
+ic_logrecentTE_logdnds <- crunch(log(Overall_TEs_recent_bp)~log(dNdS_CM_phylter_noshortbr) , data=df_ic)
+contrast_logrecentTE_logdnds <- caic.table(ic_logrecentTE_logdnds)
 ```
 
 Bayesian inference of traits and substitution rates covariation was conducted with Coevol 1.6 (Lartillot & Poujol, 2011) on each clade separately, using a set of 50 clade-specific genes, both with a low and high GC content at the third codon position (GC3 content).
