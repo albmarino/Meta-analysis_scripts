@@ -3,8 +3,7 @@ Commands and scripts for analysis reproducibility
 
 
 # TO DO:
-- edit `make_coevol_table.R` to replace **ALL** 0s with -1
-- coevol command?
+- change PGLS with PIC commands
 
 # References
 Baril, T., Imrie, R. M., & Hayward, A. (2022). Earl Grey: a fully automated user-friendly transposable element annotation and analysis pipeline [Preprint]. In Review. doi: 10.21203/rs.3.rs-1812599/v1  
