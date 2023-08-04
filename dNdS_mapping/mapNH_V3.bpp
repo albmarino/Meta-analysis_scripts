@@ -24,7 +24,5 @@ map.type = $(TYPE)
 
 count.max = 3
 
-#output.counts = PerType(prefix=counts_)
-
 # Split counts from model opportunities
-output.counts = PerBranch(prefix=CM_counts_, splitNorm=true)
+output.counts = PerBranch(prefix=CM_splitcounts_, splitNorm=true, perWordSize=true)
