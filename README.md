@@ -1,5 +1,5 @@
 # Meta-analysis scripts
-Commands and scripts for analysis reproducibility
+Commands and scripts for reproducibility
 
 
 # TO DO:
