@@ -1,13 +1,13 @@
 ## Traits correlation under phylogenetic non-independence
 Phylogenetic generalized Least Squares was performed with ape and nlme packages.
-An example for the whole dataset is shown below (the same method was applied to the clade subsets,as well).
+An example for the whole dataset is shown below, with table2 being Supplementary Table 2 (the same method was applied to the clade subsets,as well).
 
 ```
 library(ape)
 library(caper)
 library(nlme)
 
-df <- read.table("table_coevol_final.tsv", header=T, sep="\t")
+df <- read.table("table2", header=T, sep="\t")
 fulltree <- read.tree("FULLTREE_brlengths_rooted.treefile")
 rownames(df)<- df$Species
 sp2rm <- fulltree$tip.label[! fulltree$tip.label %in% rownames(df)]
