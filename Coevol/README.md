@@ -40,7 +40,7 @@ contrast_logrecentTE_logdnds <- caic.table(ic_logrecentTE_logdnds)
 ```
 
 ### PIC of substitution rates and traits covariation
-Bayesian inference of traits and substitution rates covariation was conducted with Coevol 1.6 (Lartillot & Poujol, 2011) on each clade separately, using two sets of 50 clade-specific genes, one with low and one with high GC content at the third codon position (GC3 content).
+Bayesian inference of traits and substitution rates covariation along phylogenies was conducted with Coevol 1.6 (Lartillot & Poujol, 2011) on each clade separately, using two sets of 50 clade-specific genes, one with low and one with high GC content at the third codon position (GC3 content).
 The average GC3 content for each gene and the number of markers available for each species were calculated, and species with less than 50% of single-copy markers were excluded:
 ```
 ./genespersp.sh # outputs genespersp.tsv
