@@ -60,3 +60,8 @@ Rscript make_coevol_table.R Actinopteri # outputs the traits matrix
 ~/bin/coevol -d concatenate_gcpoorset_actinopteri.fasta -t actinopteri_brlen_rooted.treefile -fixtimes -c Actinopteri_coevol.txt -dsom actinopteri_gcpoor_dsom
 ~/bin/readcoevol -x 400 +med +ci actinopteri_gcpoor_dsom
 ```
+
+dS, dN/dS (on GC-rich and GC-poor genesets) and upstream branch lenghts of every species were extracted from `*postmeanbranchnonsynrate.tab` and `*postmeanbranchsynrate.tab` outputs:
+```
+Rscript dnds_coevol.R dnds_coevol.tsv
+```
