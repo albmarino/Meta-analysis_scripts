@@ -32,12 +32,27 @@ sed "s/aln_filename/$aln/g" mapNH_V3.bpp > mapNH_currentgene.bpp
 # Map substitutions for all categories
 sed -i 's/curr_maptype/DnDs/g' mapNH_currentgene.bpp
 ~/bin/MapNH_bppV3/mapnh param=mapNH_currentgene.bpp
-rename "s/^/${gene}_/" CM_counts_*
-
-# Map substitutions by categories
-sed -i 's/DnDs/Combination\(reg1=DnDs, reg2=SW\)/g' mapNH_currentgene.bpp
-~/bin/MapNH_bppV3/mapnh param=mapNH_currentgene.bpp
-rename "s/^/${gene}_/" counts_*
+rename "s/^/${gene}_/" CM_splitcounts_*
 
 done
 ```
+
+The gene trees output by bppml are used as input to find deviant genes, such as: 
+```
+cat *ml_h.dnd_1 > trees
+ls *ml_h.dnd_1 > treenames
+```
+
+For each clade outlier genes are identified with PhylteR:
+```
+library(phylter)
+library(ape)
+trees <- read.tree("trees")
+names <- read.table("treenames", header=F)$V1
+results_k2 <- phylter(trees, gene.names = names, k=2)
+```
+Outlier genes are later excluded from the dN/dS calculation of every species of the given clade, as well as genes with terminal branch lenghts shorter than 0.001:
+```
+Rscript dndscalc_CM_noshortbranches_subset.R ${clade}_out_107.fst.treefile ${clade}_genes2keep ${clade}_dNdSCM_phylter_noshortbranches.tsv
+```
+
