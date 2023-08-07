@@ -1,5 +1,5 @@
 ## dN/dS estimation
-Genes with more than 10% of missing sequence information are removed from the alignments. With preal being the unaligned fasta of a gene:
+Sequences with more than 10% of missing sequence information are removed from the alignments. With preal being the unaligned fasta of a gene:
 ```
 for preal in *prealign_species.fasta; do
 java -jar ~/bin/macse_v2.06.jar -prog trimNonHomologousFragments -seq $preal -min_internal_homology_to_keep_seq 0.9 -out_trim_info "$clade"_"$gene"_stats.csv
