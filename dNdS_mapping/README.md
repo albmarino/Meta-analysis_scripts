@@ -51,7 +51,7 @@ trees <- read.tree("trees")
 names <- read.table("treenames", header=F)$V1
 results_k2 <- phylter(trees, gene.names = names, k=2)
 ```
-Outlier genes are later excluded from the dN/dS calculation of every species of the given clade, as well as genes with terminal branch lenghts shorter than 0.001:
+Outlier genes are later excluded from the dN/dS calculation of every species of the given clade, as well as genes with terminal branch lenghts shorter than 0.001, ${clade}_genes2keep being the list of non-outlier genes 
 ```
 Rscript dndscalc_CM_noshortbranches_subset.R ${clade}_out_107.fst.treefile ${clade}_genes2keep ${clade}_dNdSCM_phylter_noshortbranches.tsv
 ```
