@@ -1,5 +1,7 @@
 ## Traits correlation under phylogenetic non-independence
-Phylogenetic generalized Least Squares was performed with ape and nlme packages.
+
+### PIC of terminal branch dN/dS against genomic attibutes
+Phylogenetic Independent Contrasts were performed with ape, nlme and caper R packages.
 An example for the whole dataset is shown below, with table2 being Supplementary Table 2 (the same method was applied to the clade subsets,as well).
 
 ```
@@ -37,7 +39,8 @@ ic_logrecentTE_logdnds <- crunch(log(Overall_TEs_recent_bp)~log(dNdS_CM_phylter_
 contrast_logrecentTE_logdnds <- caic.table(ic_logrecentTE_logdnds)
 ```
 
-Bayesian inference of traits and substitution rates covariation was conducted with Coevol 1.6 (Lartillot & Poujol, 2011) on each clade separately, using a set of 50 clade-specific genes, both with a low and high GC content at the third codon position (GC3 content).
+### PIC of substitution rates and traits covariation
+Bayesian inference of traits and substitution rates covariation was conducted with Coevol 1.6 (Lartillot & Poujol, 2011) on each clade separately, using two sets of 50 clade-specific genes, one with low and one with high GC content at the third codon position (GC3 content).
 The average GC3 content for each gene and the number of markers available for each species were calculated, and species with less than 50% of single-copy markers were excluded:
 ```
 ./genespersp.sh # outputs genespersp.tsv
@@ -54,7 +57,7 @@ Rscript ~/bin/gc3plots.R 50 50 90 gc3_report_50percgenespersp.tsv genespersp_50p
 ./concatenate_4coevol.sh gcpoorset_actinopteri_50percgenespersp_95_20_20.tsv sp2rm_50percgenespersp
 ```
 
-Coevol was run for each clade with the GC3-poor and GC3-rich datasets as follows:
+Coevol was run for each clade with the GC3-poor and GC3-rich datasets:
 ```
 Rscript make_coevol_table.R Actinopteri # outputs the traits matrix
 ~/bin/coevol -d concatenate_gcpoorset_actinopteri.fasta -t actinopteri_brlen_rooted.treefile -fixtimes -c Actinopteri_coevol.txt -dsom actinopteri_gcpoor_dsom
