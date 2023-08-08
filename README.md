@@ -3,9 +3,8 @@ Commands and scripts for reproducibility
 
 
 # TO DO:
-- add phylter step
-- add dndscalc step to obtain dNdS measures
-- add script to extract dnds from coevol
+
+- define method for test on pairwise species comparison
 
 # References
 Baril, T., Imrie, R. M., & Hayward, A. (2022). Earl Grey: a fully automated user-friendly transposable element annotation and analysis pipeline [Preprint]. In Review. doi: 10.21203/rs.3.rs-1812599/v1  
