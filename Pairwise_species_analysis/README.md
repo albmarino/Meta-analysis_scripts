@@ -12,4 +12,6 @@ The script defines for each species a ΔdNdS, a ΔGS%, a ΔTE%, a ΔrecentTE%, a
 - ΔrecentTE% corresponds to the pairwise difference between its recent TE content (sequence divergence from the consensus sequence lower than 5%) and the recent TE content of another species as a percentage of the GS inferred for their most recent common ancestor
 
 The species with ΔGS% ≥ 10 (3rd argument) and brlen_pw ≤ 0.04 (4th argument) are retained as closely related taxa with sufficiently contrasted recent GS divergences.
-From this set, independent species pairs are randomly chosen to test the association between ΔdNdS and ΔGS%, ΔTE% and ΔrecentTE% (). If ΔdNdS is positive, positive ΔGS%, ΔTE%, ΔrecentTE% should be expected: namely, a lower Ne compared to the one of a close species is expected to associate with a positive change in GS, in TE content or recent TE content compared to the species of comparison. 
+From this set, independent species pairs are randomly chosen to test the association between ΔdNdS and ΔGS%, ΔTE% and ΔrecentTE% (chi-squared test). If ΔdNdS is positive, positive ΔGS%, ΔTE%, ΔrecentTE% should be expected: namely, an Ne lower than the one of a close species is expected to associate with a positive change in GS, in TE content or recent TE content compared to the species of comparison. The test is conducted on 100 (5th argument) randomized extractions.
+
+......
