@@ -4,7 +4,6 @@
 # Rscript dnds_coevol.R dnds_coevol.tsv # arg1 is outfile name 
 # Run on a directory with the tab readcoevol outputs of all the clades (*postmeanbranchnonsynrate.tab and *postmeanbranchsynrate.tab) from both gcpoor and gcrich runs.
 
-.libPaths( c( "/home/alba.marino/R/x86_64-pc-linux-gnu-library/4.2/" , .libPaths() ) )
 library(dplyr)
 args = commandArgs(trailingOnly=TRUE)
 
