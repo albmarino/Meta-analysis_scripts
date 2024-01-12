@@ -1,6 +1,8 @@
 #!/usr/bin/env python3 
 # -*- coding: utf-8 -*
-# python3 download_sra.py dnaPT_annotation.tsv
+# script to download short reads from a table with SRA numbers (Table S2) and run 2 rounds of dnaPipeTE with pipeline from https://github.com/sigau/pipeline_dnapipe.
+# It will work only on species with available SRA id.
+# example run: python3 download_sra.py dnaPT_annotation.tsv
 
 import sys,os,re, time, csv
 import subprocess
