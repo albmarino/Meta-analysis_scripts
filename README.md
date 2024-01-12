@@ -1,12 +1,7 @@
 # Meta-analysis scripts
-Commands and scripts for reproducibility
+Scripts for reproducibility
 
-
-# TO DO:
-
-- define method for test on pairwise species comparison
-
-# References
+# Softwares references
 Baril, T., Imrie, R. M., & Hayward, A. (2022). Earl Grey: a fully automated user-friendly transposable element annotation and analysis pipeline [Preprint]. In Review. doi: 10.21203/rs.3.rs-1812599/v1  
 
 Dutheil, J., Gaillard, S., Bazin, E., Glémin, S., Ranwez, V., Galtier, N., & Belkhir, K. (2006). Bio++: a set of C++ libraries for sequence analysis, phylogenetics, molecular evolution and population genetics. BMC Bioinformatics, 7(1), 188. doi: 10.1186/1471-2105-7-188  
