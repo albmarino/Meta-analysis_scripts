@@ -1,5 +1,8 @@
 #! /usr/bin/env python
 
+# this script takes busco output directories from one genome and extract nucleotide fasta files of single copy orhtologs
+# example run:   python3 faatofa_singlecopy_busco_editgenecol.py /your/full/path/to/dir/with/buscodirs
+
 import sys
 import os
 from Bio import SeqIO
