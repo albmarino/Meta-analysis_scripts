@@ -1,6 +1,6 @@
 #!/bin/bash
-# Sum up the overall TE content for each species (% genome coverage and bp, overall and by TE subclass) and the recent TE content (% of read counts over the total number - defined as % genome - and bp, overall and by TE subclass) as defined by $1
-# Usage: ./dnaPT_summary.sh 5 recentTEs.tsv overallTEs.tsv
+# Script to sum up the overall TE content for each species (% genome coverage and bp, overall and by TE subclass) and the recent TE content (% of read counts over the total number - defined as % genome - and bp, overall and by TE subclass) as defined by $1
+# Usage: bash dnaPT_summary.sh 5 recentTEs.tsv overallTEs.tsv
 # Arguments: maximum divergence to consider TEs as recent, output filename for recent TEs info, output filename for overall TEs info
 # launch from the working directory containing only the output directories of the dnaPT pipeline
 
