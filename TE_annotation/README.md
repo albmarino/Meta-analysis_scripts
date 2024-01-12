@@ -1,16 +1,13 @@
-## TE annotation of genome assemblies
-Earl Grey 1.3 (Baril et al., 2022) was used to annotate 29 dipteran assemblies with the command below:
-```
-earlGrey -g GCA_001542645.1.fa -s Anopheles_gambiae -r metazoa -o ./Anopheles_gambiae_earlgrey -t 8
-```
+## TE annotation and quantification
 
-## TE annotation from unassembled reads
-The pipeline available at https://github.com/sigau/pipeline_dnapipe is based on two rounds of dnaPipeTE (Goubert et al., 2015) and was used to quantify TEs from short reads. The full process from reads download to second clean output can be automatized with
-```
-python3 sradownload_dnapipe.py coevol_table.tsv
-```
-where `coevol_table.tsv` is Supplementary Table 2 (will work only on species with available reads experiment ID).
-`dnaPT_summary_overall_recent.sh` was used to extract the overall and recent TE content. It leverages `dnapt_recentTEs.R` which adapts part of `dnaPT_landscapes.sh` from https://github.com/clemgoub/dnaPT_utils. The overall and recent TE content below 5% divergence were obtained with:
-```
-./dnaPT_summary_overall_recent.sh 5 recentTEs_5perc.tsv overallTEs.tsv
-```
+Scripts to annotate genome assemblies with EarlGrey and quantify TE content with dnaPipeTE.
+
+dnaPipeTE quantifies TEs from unassembled short reads and is run in two rounds with the pipeline available at https://github.com/sigau/pipeline_dnapipe.
+The full process from reads download to second clean output is done by `sradownload_dnapipe.py`
+`dnaPT_summary_overall_recent.sh` extracts the overall and recent TE content. It leverages `dnapt_recentTEs.R` which adapts part of `dnaPT_landscapes.sh` from https://github.com/clemgoub/dnaPT_utils.
+
+
+## References
+
+Baril, T., Imrie, R. M., & Hayward, A. (2022). Earl Grey: a fully automated user-friendly transposable element annotation and analysis pipeline [Preprint]. In Review. doi: 10.21203/rs.3.rs-1812599/v1
+Goubert, C., Modolo, L., Vieira, C., ValienteMoro, C., Mavingui, P., & Boulesteix, M. (2015). De Novo Assembly and Annotation of the Asian Tiger Mosquito (Aedes albopictus) Repeatome with dnaPipeTE from Raw Genomic Reads and Comparative Analysis with the Yellow Fever Mosquito (Aedes aegypti). Genome Biology and Evolution, 7(4), 1192–1205. doi: 10.1093/gbe/evv050
