@@ -1,8 +1,10 @@
 #!/usr/bin/Rscript
 
+# script to extract recent TE info; run through dnaPT_summary_overall_recent.sh
 # use sorted_blast3 and: (1) weight reads counts with the total read count from renamed.blasting_reads.fasta; (2) use also blasted reads bp (to weight by genome size if we want). (2) probably not necessary unless we prefer a measure in bp instead of genome percentage
 # Usage --> Rscript dnapt_recentTEs.R 5 $species $startpath $outfile # numeric argument with the maximum blastn divergence to sample as recent TEs, species, initial working directory, and output filename to append recent TEs info to
 # output table with one species for each line, with overall and subclass by subclass TEs
+
 args = commandArgs(trailingOnly=TRUE)
 library(dplyr)
 library(tidyr)
