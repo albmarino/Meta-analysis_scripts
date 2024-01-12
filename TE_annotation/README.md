@@ -10,4 +10,5 @@ The full process from reads download to second clean output is done by `sradownl
 ## References
 
 Baril, T., Imrie, R. M., & Hayward, A. (2022). Earl Grey: a fully automated user-friendly transposable element annotation and analysis pipeline [Preprint]. In Review. doi: 10.21203/rs.3.rs-1812599/v1
+
 Goubert, C., Modolo, L., Vieira, C., ValienteMoro, C., Mavingui, P., & Boulesteix, M. (2015). De Novo Assembly and Annotation of the Asian Tiger Mosquito (Aedes albopictus) Repeatome with dnaPipeTE from Raw Genomic Reads and Comparative Analysis with the Yellow Fever Mosquito (Aedes aegypti). Genome Biology and Evolution, 7(4), 1192–1205. doi: 10.1093/gbe/evv050
