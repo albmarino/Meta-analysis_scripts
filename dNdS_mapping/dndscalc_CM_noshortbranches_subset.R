@@ -5,6 +5,7 @@
 # Required input: clade nwk phylogeny as 1st argument, newline-seaprated list of gene prefixes that we want to include in the dN/dS computation as 2nd argument (e.g. remove outlier genes selected by PhylteR) (in the form falserm_<clade>_<genename>__final_mask_align_NT.aln), outfile name as 3rd argument
 # Output files of run_bppml_mapnh_V3.sh must be in pwd
 # Example command: Rscript dndscalc_CM_noshortbranches_subset.R actinopteri_out_107.fst.treefile actinopteri_genes2keep trim700_actinopteri_dNdSCM_phylter_noshortbranches.tsv
+# Outputs a tsv file with dN/dS calculated for every species
 
 library(ape)
 library(stringr)
