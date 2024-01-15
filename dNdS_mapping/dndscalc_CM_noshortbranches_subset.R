@@ -1,9 +1,9 @@
 #!/usr/bin/env Rscript
 
-# Calculate dN, dS with Cumulated Mean approach
-# dN and dS for each species are obtained as sum(counts)/sum(opportunities/brlength) = sum(counts)*sum(brlength/opportunities), going over the given geneset
+# Calculate dN, dS with Cumulated Mean approach: dN and dS for each species are obtained as sum(counts)/sum(opportunities/brlength) = sum(counts)*sum(brlength/opportunities), going over the given geneset
 
-# Example command --> Rscript dndscalc_CM_noshortbranches_subset.R mammalia_out_100.fst.treefile mammalia_genes2keep mammalia_dNdSCM_phylter_noshortbranches.tsv
+# Required input: clade nwk phylogeny as 1st argument, newline-seaprated list of gene prefixes (falserm_<clade>_<genename>__final_mask_align_NT.aln) as 2nd argument, outfile name as 3rd argument
+# Example command: Rscript dndscalc_CM_noshortbranches_subset.R actinopteri_out_107.fst.treefile actinopteri_genes2keep trim700_actinopteri_dNdSCM_phylter_noshortbranches.tsv
 
 library(ape)
 library(stringr)
