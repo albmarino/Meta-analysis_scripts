@@ -3,7 +3,7 @@
 Scripts to annotate genome assemblies with EarlGrey and quantify TE content with dnaPipeTE.
 
 dnaPipeTE quantifies TEs from unassembled short reads and is run in two rounds with the pipeline available at https://github.com/sigau/pipeline_dnapipe.
-The full process from reads download to second clean output is done by `sradownload_dnapipe.py`
+The full process from reads download to second clean output is done by `sradownload_dnapipe.py`.
 `dnaPT_summary_overall_recent.sh` extracts the overall and recent TE content. It leverages `dnapt_recentTEs.R` which adapts part of `dnaPT_landscapes.sh` from https://github.com/clemgoub/dnaPT_utils.
 
 
