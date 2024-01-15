@@ -14,5 +14,3 @@ Lartillot, N., & Poujol, R. (2011). A Phylogenetic Model for Investigating Corre
 Nguyen, L.-T., Schmidt, H. A., von Haeseler, A., & Minh, B. Q. (2015). IQ-TREE: A Fast and Effective Stochastic Algorithm for Estimating Maximum-Likelihood Phylogenies. Molecular Biology and Evolution, 32(1), 268–274. doi: 10.1093/molbev/msu300   
 
 Romiguier, J., Figuet, E., Galtier, N., Douzery, E. J. P., Boussau, B., Dutheil, J. Y., & Ranwez, V. (2012). Fast and Robust Characterization of Time-Heterogeneous Sequence Evolutionary Processes Using Substitution Mapping. PLOS ONE, 7(3), e33852. doi: 10.1371/journal.pone.0033852  
-
-Shen, W., Le, S., Li, Y., & Hu, F. (2016). SeqKit: A Cross-Platform and Ultrafast Toolkit for FASTA/Q File Manipulation. PLOS ONE, 11(10), e0163962. doi: 10.1371/journal.pone.0163962  
