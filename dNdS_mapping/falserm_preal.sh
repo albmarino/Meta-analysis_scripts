@@ -9,7 +9,7 @@
 for preal_fasta in $(cat $1); do
 
 	gene=$(preal_fasta%_prealign_species.fasta)
-	java -jar ~/bin/macse_v2.06.jar -prog trimNonHomologousFragments -seq $preal_fasta -min_internal_homology_to_keep_seq 0.9 -out_trim_info "$clade"_"$gene"_stats.csv
+	java -jar ~/bin/macse_v2.06.jar -prog trimNonHomologousFragments -seq $preal_fasta -min_internal_homology_to_keep_seq $2 -out_trim_info "$3"_"$gene"_stats.csv
 	done
 	ls *stats.csv > statlist
 	ls $1*aln > alnlist 
