@@ -1,6 +1,7 @@
 ## Computing clade and full phylogeny
 
 Scripts to compute clade phylogenies and merge them.
+
 Clade phylogenies are computed over the same geneset (`concatenate.sh`, `iqtree.sh`)
 Briefly, a clade phylogeny is rooted with one outgroup species of the closest clade by enriching the alignments of the 107 genes with the homologous sequences of the outgroup. The same procedure is reiterated until the full topology is reached. Example between mammals and birds: `merge_phylogenies_example.sh`.
 In parallel, alignment profiles of 50 top-shared busco genes are aligned to each other. The same procedure is reiterated until the full profile is reached for every gene (`align_profiles_example.sh`).
