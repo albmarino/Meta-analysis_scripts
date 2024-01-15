@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # align genes with omm_macse from a provided newline-separated list of multifasta files
+# Required: *prealign_species.fasta (output of idrename_splitpreal.sh) containing sequences from species of the corresponding alignment clade
 # example usage: bash run_omm_macse.sh genelist
 
 for preal_fasta in $(cat $1); do
