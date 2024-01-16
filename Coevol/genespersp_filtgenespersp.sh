@@ -3,7 +3,7 @@
 # Script to count the number of genes per species over overall and clade total, excluding the species in a list
 
 # Required input: all the falserm_<clade>_<genename>_final_mask_NT.aln files and the sp2rm list output by gc3plots.R in the pwd
-# Example run: bash genespersp.sh sp2rm_50percgenespersp
+# Example run: bash genespersp_filtergenespersp.sh sp2rm_50percgenespersp
 # Output: genespersp_50percgenespersp.tsv, can be used again as input with gc3plots.R
 
 pref=${1#sp2rm_}
