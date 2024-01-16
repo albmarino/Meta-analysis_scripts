@@ -1,6 +1,6 @@
 ## Traits correlation under phylogenetic non-independence with Coevol
 
-Scripts to filter and choose GC3-poor and GC3-rich genes for each clade.
+Scripts to select GC3-poor and GC3-rich genes and to run Coevol.
 
 #### Full geneset stats and filtering
 `genespersp.sh` calculates the number of markers for each species.<br>
