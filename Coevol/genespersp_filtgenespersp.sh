@@ -4,7 +4,7 @@
 
 # Required input: all the falserm_<clade>_<genename>_final_mask_NT.aln files and the sp2rm list output by gc3plots.R in the pwd
 # Example run: bash genespersp.sh sp2rm_50percgenespersp
-# Output: genespersp_50percgenespersp, can be used again as input with gc3plots.R
+# Output: genespersp_50percgenespersp.tsv, can be used again as input with gc3plots.R
 
 pref=${1#sp2rm_}
 cat falserm_mollusca*aln|grep ">" | sort -u | sed 's/>//g' | grep -Fv -f $1 > spmol
