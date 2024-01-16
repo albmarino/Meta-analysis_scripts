@@ -1,3 +1,3 @@
 # Meta-analysis scripts
-Scripts for reproducibility
+Scripts and commands for reproducibility
 
