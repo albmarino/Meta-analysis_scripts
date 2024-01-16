@@ -12,8 +12,8 @@
 ## minimum percentage of species present for a gene to be selected as 3rd argument
 ## number of top GC3-poor/rich genes to sample from previous selection as 1st argument
 ## number of top shared genes to sample from previous selection as 2nd argument
-## gcstat.sh output as 4th argument
-## genespersp.sh output as 5th argument
+## gcstat.sh {or gcstat_filtgenespersp.sh} output as 4th argument
+## genespersp.sh {or genespersp_filtgenespersp.sh} output as 5th argument
 ## minimum percentage of genes for a species to be kept as 6th argument (optional, to produce a list of species to exclude)
 
 # Example run
