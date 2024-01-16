@@ -16,7 +16,7 @@ if [[ "${dataset}" == "tot" ]] ; then # if we are dealing with total dataset...
 
 		for clade in $(echo -e "actinopteri\naves\ninsecta\nmammalia\nmollusca"); do
 			if [ -e falserm_${clade}_${gene}_final_mask_align_NT.aln ]; then
-				seqkit grep -n -v -f sp2rm_50percgenespersp falserm_${clade}_${gene}_final_mask_align_NT.aln > spremoved_falserm_${clade}_${gene}_final_mask_align_NT.aln
+				seqkit grep -n -v -f $2 falserm_${clade}_${gene}_final_mask_align_NT.aln > spremoved_falserm_${clade}_${gene}_final_mask_align_NT.aln
 			else
 				echo "$clade_$gene does not exist, skipping it..."
 			fi
@@ -66,14 +66,14 @@ else # otherwise if we are dealing with a clade dataset...
 	echo -e "$nmarkers genes from $settype for $dataset dataset are going to be concatenated\n"
         echo "Removing species with more than 50% of genes missing"
 	for gene in $(cat $1); do
-		seqkit grep -n -v -f sp2rm_50percgenespersp falserm_${dataset}_${gene}_final_mask_align_NT.aln > spremoved_falserm_${dataset}_${gene}_final_mask_align_NT.aln
+		seqkit grep -n -v -f $2 falserm_${dataset}_${gene}_final_mask_align_NT.aln > spremoved_falserm_${dataset}_${gene}_final_mask_align_NT.aln
 	done
 
 	echo "Concatenating..."
 	grep ">" spremoved_falserm_${dataset}*final_mask_align_NT.aln | cut -d: -f2 | sort -u | sed 's/>//' > list_esp.txt
 	ls spremoved_falserm_${dataset}*final_mask_align_NT.aln > list_file.txt
 
-	~/softwares/Concatenate list_file.txt concatenate_${settype}_${dataset}.fasta list_esp.txt nuc Fasta
+	${HOME}/softwares/Concatenate list_file.txt concatenate_${settype}_${dataset}.fasta list_esp.txt nuc Fasta
 fi
 
 rm spremoved* list_file.txt list_esp.txt
