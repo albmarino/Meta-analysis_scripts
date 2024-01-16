@@ -17,7 +17,7 @@
 ## minimum percentage of genes for a species to be kept as 6th argument (optional, to produce a list of species to exclude)
 
 # Example run
-# Rscript gc3plots.R 50 50 95 gc3_report_new.tsv genespersp.tsv 70
+# Rscript gc3plots.R 50 50 95 gc3_report_new.tsv genespersp.tsv 50
 # This will display plots after selecting the 50 GC3-poorest and GC3-richest genes out of those which are represented in at least 95% of the species; and will produce a list of species with less than 70% of the genes
 
 library(ggplot2)
