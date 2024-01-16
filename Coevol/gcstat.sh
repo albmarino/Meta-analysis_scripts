@@ -1,7 +1,9 @@
 #!/bin/bash
-# Extract the GC3 average of every busco gene across all the clades - Actinotperi, Aves, Insecta, Mammalia, Mollusca
-# Extract the number of species present in each alignment file - to understand if we have a mostly conserved geneset
-# Order them by increasing GC to understand if we have a big enough GC-poor shared geneset
+
+# Script to estimate for every busco gene GC3% average across each clade and number of species represented. Then sort by increasing GC3% content.
+
+# Required input: all the falserm_<clade>_<genename>_final_mask_NT.aln files in the pwd
+# bash gcstat.sh
 
 ls *_final_mask_align_NT.aln | cut -d'_' -f3 | sort -u > genelist
 echo -e "Gene\tGene_nsp_total\tSp_total\tMissingdata_average_total\tGC3_average_total\tGC3_variance_total\tGene_nsp_actinopteri\tSp_actinopteri\tMissingdata_actinopteri\tGC3_average_actinopteri\tGC3_variance_actinopteri\tGene_nsp_aves\tSp_aves\tMissingdata_aves\tGC3_average_aves\tGC3_variance_aves\tGene_nsp_insecta\tSp_insecta\tMissingdata_insecta\tGC3_average_insecta\tGC3_variance_insecta\tGene_nsp_mammalia\tSp_mammalia\tMissingdata_mammalia\tGC3_average_mammalia\tGC3_variance_mammalia\tGene_nsp_mollusca\tSp_mollusca\tMissingdata_mollusca\tGC3_average_mollusca\tGC3_variance_mollusca" > gc3_report_new.tsv
