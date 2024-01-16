@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Script to count the number of genes per species over overall and clade total
+
+# Required input: all the falserm_<clade>_<genename>_final_mask_NT.aln files in the pwd
 # bash genespersp.sh
 
 cat falserm_mollusca*aln|grep ">" | sort -u | sed 's/>//g' > spmol
