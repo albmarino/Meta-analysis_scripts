@@ -1,6 +1,9 @@
 #!/bin/bash
-# Example usage ----> ./concatenate_4coevol.sh gcpoorset_tot_50percgenespersp_95_20_20.tsv sp2rm_50percgenespersp
-# First argument is the list of selected genes, second argument is the list of species to exclude
+
+# Script to concatenate GC3-selected genes for Coevol
+
+# Required input: lists of geneset and of species to exclude output from gc3plots.R {or gc3plots_gcrich.R} 
+# Example usage: bash concatenate_4coevol.sh gcpoorset_tot_50percgenespersp_95_20_20.tsv sp2rm_50percgenespersp
 
 settype=$(echo $1 | cut -d'_' -f1) # gcpoorset or gcrichset
 dataset=$(echo $1 | cut -d'_' -f2) # tot or clade
