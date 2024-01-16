@@ -1,8 +1,10 @@
 #!/bin/bash
-# Extract the GC3 average of every busco gene across all the clades - Actinotperi, Aves, Insecta, Mammalia, Mollusca
-# Extract the number of species present in each alignment file - to understand if we have a mostly conserved geneset
-# Order them by increasing GC to understand if we have a big enough GC-poor shared geneset
-# bash gcstat_filtgenespersp.sh sp2rm_70percgenespersp
+
+
+# Script to estimate for every busco gene, except those in a list, GC3% average across each clade and number of species represented. Then sort by increasing GC3% content.
+
+# Required input: all the falserm_<clade>_<genename>_final_mask_NT.aln files and sp2rm list output by gc3plots.R in the pwd
+# Example run: bash gcstat_filtgenespersp.sh sp2rm_70percgenespersp
 
 thresh=${1#sp2rm_}
 sed 's/$/\$/g' $1 > regexdollar_${1}
