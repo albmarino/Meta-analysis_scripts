@@ -8,16 +8,16 @@ Scripts to select GC3-poor and GC3-rich genes and to run Coevol.
 `gc3plots.R` plots GC3 levels per clade and outputs a list of species to remove.<br>
 
 #### Extract genes post-filtering
-`gcstat_filtgenespersp.sh` reports GC3 level statistics on the filtered dataset after species removal
-`genespersp_filtgenespersp.sh` calculates the number of markers for each species on the filtered dataset
-`gc3plots_gcrich.R` outputs lists of the top GC3-rich genes for every clade
-`gc3plots.R` outputs lists of the top 50 GC3-poor genes for every clade
+`gcstat_filtgenespersp.sh` reports GC3 level statistics on the filtered dataset after species removal.<br>
+`genespersp_filtgenespersp.sh` calculates the number of markers for each species on the filtered dataset.<br>
+`gc3plots_gcrich.R` outputs lists of the top GC3-rich genes for every clade.<br>
+`gc3plots.R` outputs lists of the top 50 GC3-poor genes for every clade.<br>
 
 #### Run Coevol and read output
-`concatenate_4coevol.sh` concatenates listed genes
-`make_coevol_table.R` produces a matrix in input format for Coevol
-`run_coevol.sh` and `read_coevol.sh` run Coevol and check output 
-`dnds_coevol.R` extracts Coevol dS and dN/dS
+`concatenate_4coevol.sh` concatenates listed genes.<br>
+`make_coevol_table.R` produces a matrix in input format for Coevol.<br>
+`run_coevol.sh` and `read_coevol.sh` run Coevol and check output.<br>
+`dnds_coevol.R` extracts Coevol dS and dN/dS.<br>
 
 
 
