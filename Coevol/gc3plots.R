@@ -1,11 +1,24 @@
 #!/usr/bin/Rscript
 
-## GC3 content overview
-# Produce boxplots and histograms to show the overall distribution of average GC3 content, average missing data in a sequence, and average gene sharing across species (this for each dataset). Supply three integer arguments to sample genes shared from at least the 95% of the reference dataset, from them sample the 50 top GC-poor genes (from which the 50 top shared genes are extracted). Three boxplots are produced for the extracted geneset to show (1) the distribution of average GC3 content, (2) the distribution of average missing data in a sequence, and (3) the distribution of gene sharing across species (in % relative to the reference dataset). The venn diagram shows the overlapping among the selected genesets of the several datasets.
-## Number of genes per species overview
-# Produce barplot with the gene proportion of each species compared to the total dataset (954 genes) and output a list of species under the given threshold (args[6]) to potentially exclude for downstream analyses (dN/dS calculation, coevol, etc.). The sp2rm list can be used as input in gcstat_filtgenespersp.sh whose output can be used again in turn in this script. 
-# Example --> Rscript ~/bin/gc3plots.R 50 50 95 gc3_report_new.tsv genespersp.tsv 70
+# Script to have a list of underrepresented species to remove and display GC3 content overview
 
+# 1. Boxplots and histograms show the overall distribution of average GC3 content, average missing data in a sequence, and average gene sharing across species for each dataset.
+# 2. The first three integer arguments supplied are used to sample genes shared from at least the 95% of the reference dataset, from them sample the 50 top GC3-poor genes, from which the 50 top shared genes are extracted.
+# 3. Three boxplots and a venn diagram are produced for the extracted geneset to show (1) the distribution of average GC3 content, (2) the distribution of average missing data in a sequence, (3) the distribution of gene sharing across species (in % relative to the reference dataset), and (4) the overlap among the selected genesets of the several datasets.
+# 4. A barplot with the gene proportion of each species compared to the total dataset (954 genes) and a list of species under the given threshold (args[6]) to exclude for downstream analyses.
+# The sp2rm list can be used as input in gcstat_filtgenespersp.sh whose output can be used again in turn in this script for visual check.
+
+# Required input:
+## minimum percentage of species present for a gene to be selected as 3rd argument
+## number of top GC3-poor/rich genes to sample from previous selection as 1st argument
+## number of top shared genes to sample from previous selection as 2nd argument
+## gcstat.sh output as 4th argument
+## genespersp.sh output as 5th argument
+## minimum percentage of genes for a species to be kept as 6th argument (optional, to produce a list of species to exclude)
+
+# Example run
+# Rscript gc3plots.R 50 50 95 gc3_report_new.tsv genespersp.tsv 70
+# This will display plots after selecting the 50 GC3-poorest and GC3-richest genes out of those which are represented in at least 95% of the species; and will produce a list of species with less than 70% of the genes
 
 library(ggplot2)
 library(ggpubr)
