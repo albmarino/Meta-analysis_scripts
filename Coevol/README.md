@@ -1,47 +1,26 @@
-## Traits correlation under phylogenetic non-independence
+## Traits correlation under phylogenetic non-independence with Coevol
 
-### PIC of terminal branch dN/dS against genomic attibutes
-Phylogenetic Independent Contrasts were performed with ape, nlme and caper R packages.
-An example for the whole dataset is shown below, with table2 being Supplementary Table 2 (the same method was applied to the clade subsets,as well).
+Scripts to filter and choose GC3-poor and GC3-rich genes for each clade.
 
-```
-library(ape)
-library(caper)
-library(nlme)
+#### Full geneset stats and filtering
+`genespersp.sh` calculates the number of markers for each species.<br>
+`gcstat.sh` reports GC3 level statistics per gene overall and at clade level.<br>
+`gc3plots.R` plots GC3 levels per clade and outputs a list of species to remove.<br>
 
-df <- read.table("table2", header=T, sep="\t")
-fulltree <- read.tree("FULLTREE_brlengths_rooted.treefile")
-rownames(df)<- df$Species
-sp2rm <- fulltree$tip.label[! fulltree$tip.label %in% rownames(df)]
-prunedtree <- drop.tip(fulltree, sp2rm)
-df <-  df[prunedtree$tip.label, ]
-prunedtree$node.label = NULL
+#### Extract genes post-filtering
+`gcstat_filtgenespersp.sh` reports GC3 level statistics on the filtered dataset after species removal
+`genespersp_filtgenespersp.sh` calculates the number of markers for each species on the filtered dataset
+`gc3plots_gcrich.R` outputs lists of the top GC3-rich genes for every clade
+`gc3plots.R` outputs lists of the top 50 GC3-poor genes for every clade
 
-df_ic <- comparative.data(prunedtree, df, Species, na.omit = F , vcv=TRUE )
+#### Run Coevol and read output
+`concatenate_4coevol.sh` concatenates listed genes
+`make_coevol_table.R` produces a matrix in input format for Coevol
+`run_coevol.sh` and `read_coevol.sh` run Coevol and check output 
+`dnds_coevol.R` extracts Coevol dS and dN/dS
 
-ic_logmass_logdnds <- crunch(Mass_g_log~log(dNdS_CM_phylter_noshortbr) , data=df_ic)
-contrast_logmass_logdnds <- caic.table(ic_logmass_logdnds)
 
-ic_loglong_logdnds <- crunch(MaxLongevity_y_log~log(dNdS_CM_phylter_noshortbr) , data=df_ic)
-contrast_loglong_logdnds <- caic.table(ic_loglong_logdnds)
 
-ic_loggs_logTE <- crunch(log(Unified_Cvalues_methods)~log(Overall_repeat_bp) , data=df_ic)
-contrast_loggs_logTE <- caic.table(ic_loggs_logTE)
-
-ic_loggs_logdnds <- crunch(log(Unified_Cvalues_methods)~log(dNdS_CM_phylter_noshortbr) , data=df_ic)
-contrast_loggs_logdnds <- caic.table(ic_loggs_logdnds)
-
-ic_logTE_logdnds <- crunch(log(Overall_repeat_bp)~log(dNdS_CM_phylter_noshortbr) , data=df_ic)
-summary(ic_logTE_logdnds)
-contrast_logTE_logdnds <- caic.table(ic_logTE_logdnds)
-
-ic_logrecentTE_logdnds <- crunch(log(Overall_TEs_recent_bp)~log(dNdS_CM_phylter_noshortbr) , data=df_ic)
-contrast_logrecentTE_logdnds <- caic.table(ic_logrecentTE_logdnds)
-```
-
-### PIC of substitution rates and traits covariation
-Bayesian inference of traits and substitution rates covariation along phylogenies was conducted with Coevol 1.6 (Lartillot & Poujol, 2011) on each clade separately, using two sets of 50 clade-specific genes, one with low and one with high GC content at the third codon position (GC3 content).
-The average GC3 content for each gene and the number of markers available for each species were calculated, and species with less than 50% of single-copy markers were excluded:
 ```
 ./genespersp.sh # outputs genespersp.tsv
 ./gcstat.sh # outputs gc3_report_allsp.tsv
