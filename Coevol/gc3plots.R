@@ -6,7 +6,7 @@
 # 2. The first three integer arguments supplied are used to sample genes shared from at least the 95% of the reference dataset, from them sample the 50 top GC3-poor genes, from which the 50 top shared genes are extracted.
 # 3. Three boxplots and a venn diagram are produced for the extracted geneset to show (1) the distribution of average GC3 content, (2) the distribution of average missing data in a sequence, (3) the distribution of gene sharing across species (in % relative to the reference dataset), and (4) the overlap among the selected genesets of the several datasets.
 # 4. A barplot with the gene proportion of each species compared to the total dataset (954 genes) and a list of species under the given threshold (args[6]) to exclude for downstream analyses.
-# The sp2rm list can be used as input in gcstat_filtgenespersp.sh whose output can be used again in turn in this script for visual check.
+# The sp2rm list can be used as input in gcstat_filtgenespersp.sh whose output can be used again in turn in this script for visual check and to finally have the genesets lists.
 
 # Required input:
 ## minimum percentage of species present for a gene to be selected as 3rd argument
