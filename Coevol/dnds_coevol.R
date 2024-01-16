@@ -1,8 +1,9 @@
 #!/usr/bin/Rscript
 
-# Extract dS, dNdS and branch lenght values estimated by coevol
-# Rscript dnds_coevol.R dnds_coevol.tsv # arg1 is outfile name 
-# Run on a directory with the tab readcoevol outputs of all the clades (*postmeanbranchnonsynrate.tab and *postmeanbranchsynrate.tab) from both gcpoor and gcrich runs.
+# Script to extract terminal dS, dNdS and branch lenght estimated by coevol
+
+# Required input: tab readcoevol outputs of all the clades (*postmeanbranchnonsynrate.tab and *postmeanbranchsynrate.tab) from both gcpoor and gcrich runs in pwd
+# Example run: Rscript dnds_coevol.R dnds_coevol.tsv # 1st argument is the outfile name 
 
 library(dplyr)
 args = commandArgs(trailingOnly=TRUE)
