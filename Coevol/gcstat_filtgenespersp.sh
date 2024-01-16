@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 # Script to estimate for every busco gene, except those in a list, GC3% average across each clade and number of species represented. Then sort by increasing GC3% content.
 
 # Required input: all the falserm_<clade>_<genename>_final_mask_NT.aln files and sp2rm list output by gc3plots.R in the pwd
