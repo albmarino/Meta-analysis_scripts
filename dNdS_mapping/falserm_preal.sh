@@ -10,18 +10,16 @@ for preal_fasta in $(cat $1); do
 
 	gene=$(preal_fasta%_prealign_species.fasta)
 	java -jar ~/bin/macse_v2.06.jar -prog trimNonHomologousFragments -seq $preal_fasta -min_internal_homology_to_keep_seq $2 -out_trim_info "$3"_"$gene"_stats.csv
-	done
-	ls *stats.csv > statlist
-	ls $1*aln > alnlist 
+done
+	#ls *stats.csv > statlist
+ls *final_mask_align_NT.aln > alnlist 
 
-	for statfile in $(cat statlist); do
+for statfile in *stats.csv; do
 	statgene=${statfile%_stats.csv}
 	if grep -q $statgene alnlist; then
-	grep true $statfile | cut -d';' -f1 > sp2keep.txt
-	seqkit grep -f sp2keep.txt "$statgene"_final_mask_align_NT.aln -o falserm_"$statgene"_final_mask_align_NT.aln
+		grep true $statfile | cut -d';' -f1 > sp2keep.txt
+		seqkit grep -f sp2keep.txt "$statgene"_final_mask_align_NT.aln -o falserm_"$statgene"_final_mask_align_NT.aln
 	fi
-	done
-
 done
 
 # outputs falserm_<clade>_<gene>_final_mask_align_NT.aln to be used for dN/dS analyses
