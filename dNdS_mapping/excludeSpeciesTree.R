@@ -1,7 +1,7 @@
 #!/usr/bin/env Rscript
 
 # script to trim clade phylogeny by species present in each alignment.
-# Required input: clade nwk phylogeny. Outputs as many treefiles as alignment files (to be used in Bio++)
+# Required input: clade nwk phylogeny and falserm*aln output by falserm_preal.sh. Outputs as many treefiles as alignment files (to be used in Bio++)
 # Example run: Rscript excludeSpeciesTree.R mollusca_out_107.fst.treefile
 
 args = commandArgs(trailingOnly=TRUE)
