@@ -8,7 +8,7 @@ args = commandArgs(trailingOnly=TRUE)
 library(ape)
 
 mytree<-read.tree(args[1])
-alns<-list.files(path=".",pattern="falserm*NT.aln$", all.files=FALSE, full.names=FALSE)
+alns<-list.files(path=".",pattern="falserm.*NT.aln$", all.files=FALSE, full.names=FALSE)
 
 for (i in alns) {
 	
