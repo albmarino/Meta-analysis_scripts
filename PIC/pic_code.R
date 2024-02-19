@@ -2,6 +2,7 @@
 
 # Commands to calculate phylogenetic Independent Contrasts (PIC) among traits and dN/dS - example with Bio++ dN/dS (dNdS_CM_phylter_noshortbr)
 # Required input: full phylogeny FULLTREE_brlengths_rooted.treefile and TableS2.tsv
+# Rscript pic_Code.R TableS2.tsv FULLTREE_brlengths_rooted.treefile
 
 library(ape)
 library(caper)
@@ -9,9 +10,10 @@ library(nlme)
 library(dplyr)
 library(ggplot2)
 library(ggpubr)
+args = commandArgs(trailingOnly=TRUE)
 
-df <- read.table("table_coevol_final.tsv",header=T,sep="\t")
-fulltree <- read.tree("FULLTREE_brlengths_rooted.treefile")
+df <- read.table(args[1],header=T,sep="\t")
+fulltree <- read.tree(args[2])
 sp2rm <- fulltree$tip.label[! fulltree$tip.label %in% rownames(df)]
 prunedtree <- drop.tip(fulltree, sp2rm)
 df <-  df[prunedtree$tip.label, ]
